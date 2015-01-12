@@ -2,7 +2,6 @@
 
 namespace Nayjest\I18n;
 
-
 class I18n
 {
     protected static $instance;
