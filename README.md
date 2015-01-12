@@ -25,7 +25,7 @@ Multilanguage support for Laravel framework
 Add nayjest/grids to "require" section of your composer.json
 ```javascript
 "require": {
-    "nayjest/i18n": "~0.4"
+    "nayjest/i18n": "~1"
 },
 ```
 
