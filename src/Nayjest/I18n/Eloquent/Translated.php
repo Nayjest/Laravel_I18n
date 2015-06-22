@@ -217,12 +217,14 @@ trait Translated
         if (method_exists($this, $camelKey)) {
             return $this->getRelationshipFromMethod($key, $camelKey);
         }
-        // same for translation
-        $translation = $this->getCurrentTranslation(false);
-        if ($translation) {
-            return $translation->getAttribute($key);
+        if($this->exists)
+        {
+            // same for translation
+            $translation = $this->getCurrentTranslation(false);
+            if ($translation) {
+                return $translation->getAttribute($key);
+            }
         }
-
     }
 
     /**
