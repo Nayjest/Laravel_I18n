@@ -7,7 +7,6 @@ Multilanguage support for Laravel framework
 [![Code Climate](https://codeclimate.com/github/Nayjest/Laravel_I18n/badges/gpa.svg)](https://codeclimate.com/github/Nayjest/Laravel_I18n)
 [![Circle CI](https://circleci.com/gh/Nayjest/Laravel_I18n.svg?style=svg)](https://circleci.com/gh/Nayjest/Laravel_I18n)
 ![Release](https://img.shields.io/packagist/v/nayjest/i18n.svg)
-[![HHVM Status](http://hhvm.h4cc.de/badge/nayjest/i18n.svg)](http://hhvm.h4cc.de/badge/nayjest/i18n.svg)
 
 ## Features
 * Traits for multilanguage models
