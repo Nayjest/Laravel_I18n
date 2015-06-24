@@ -13,7 +13,7 @@ Multilanguage support for Laravel framework
 * Language switcher
 ## Requirements
 
-* Laravel 4.X / 5.X
+* Laravel 4.X
 * php 5.3+
 
 ## Installation
