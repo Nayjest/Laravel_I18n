@@ -29,19 +29,23 @@ class ServiceProvider extends BaseServiceProvider
         App::instance('i18n', I18n::getInstance());
 
 
-        Route::filter('i18n.applyLanguage', function()
-        {
+        Route::filter('i18n.applyLanguage', function () {
 
             # @todo update user profile with language
-            if(!$language = Cookie::get(I18n::SESSION_KEY)){
+            if (!$language = Cookie::get(I18n::SESSION_KEY)) {
                 $browser_language = strtolower(substr(@$_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
-                if(strlen($browser_language) && array_key_exists($browser_language, I18n::getSupportedLanguages())){
-                    $language=$browser_language;
-                }
-                else {
+                if (
+                    strlen($browser_language)
+                    && array_key_exists(
+                        $browser_language,
+                        I18n::getInstance()->getSupportedLanguages()
+                    )
+                ) {
+                    $language = $browser_language;
+                } else {
                     $language = App::getLocale();
                 }
-                Cookie::queue(I18n::SESSION_KEY, $language, 60*24*60, '/');
+                Cookie::queue(I18n::SESSION_KEY, $language, 60 * 24 * 60, '/');
             }
 
             Config::set('app.locale', $language);
