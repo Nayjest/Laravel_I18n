@@ -31,18 +31,22 @@ class ServiceProvider extends BaseServiceProvider
 
         Route::filter('i18n.applyLanguage', function () {
 
-            # @todo update user profile with language
-            if (!$language = Cookie::get(I18n::SESSION_KEY)) {
+            if (!$language = \Cookie::get(I18n::SESSION_KEY)) {
+
+                $locale_by_ip     = strtolower(geoip_country_code_by_name(\Request::getClientIp()));
                 $browser_language = strtolower(substr(@$_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
-                if (
-                    strlen($browser_language)
-                    && array_key_exists(
-                        $browser_language,
-                        I18n::getInstance()->getSupportedLanguages()
-                    )
-                ) {
+                if ($browser_language == 'sv') $browser_language = 'se'; // Kostyl for Sweden language. It based on difference bitween ISO-639 and ISO-3166
+
+                if ($locale_by_ip) {
+                    // PRIORITY I
+                    $language = $locale_by_ip;
+                }
+                elseif (strlen($browser_language) && array_key_exists($browser_language, \I18n::getSupportedLanguages())) {
+                    // PRIORITY II
                     $language = $browser_language;
-                } else {
+                }
+                else {
+                    // LAST PRIORITY
                     $language = App::getLocale();
                 }
                 Cookie::queue(I18n::SESSION_KEY, $language, 60 * 24 * 60, '/');
