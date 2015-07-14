@@ -37,7 +37,7 @@ class ServiceProvider extends BaseServiceProvider
                 $browser_language = strtolower(substr(@$_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
                 if ($browser_language == 'sv') $browser_language = 'se'; // Kostyl for Sweden language. It based on difference bitween ISO-639 and ISO-3166
 
-                if ($locale_by_ip) {
+                if ($locale_by_ip && array_key_exists($locale_by_ip, \I18n::getSupportedLanguages())) {
                     // PRIORITY I
                     $language = $locale_by_ip;
                 }
