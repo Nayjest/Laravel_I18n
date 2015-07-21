@@ -33,7 +33,11 @@ class ServiceProvider extends BaseServiceProvider
 
             if (!$language = \Cookie::get(I18n::SESSION_KEY)) {
 
-                $locale_by_ip     = strtolower(geoip_country_code_by_name(\Request::getClientIp()));
+                try {
+                    $locale_by_ip     = strtolower(geoip_country_code_by_name(\Request::getClientIp()));
+                } catch(\Exception $e) {
+                    $locale_by_ip = '';
+                }
                 $browser_language = strtolower(substr(@$_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
                 if ($browser_language == 'sv') $browser_language = 'se'; // Kostyl for Sweden language. It based on difference bitween ISO-639 and ISO-3166
 
