@@ -47,6 +47,6 @@ to 'providers' section of app/config/app.php file.
 ## License
 
 
-© 2014&mdash;2018 Vitalii Stepanenko
+© 2014&mdash;2019 Vitalii Stepanenko
 
 Licensed under the MIT License.
